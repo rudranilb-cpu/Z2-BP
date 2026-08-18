@@ -1,0 +1,38 @@
+Frozen BP baseline:
+  K/Gamma = 2.2, D = 16, dt = 0.05, Lie-Trotter, 8x6 dual lattice
+Controlled window:
+  t <= 0.4 strictly controlled; 0.4 < t <= 0.5 shown with explicit BP uncertainty
+
+Files detected:
+  baseline_global: OK
+  baseline_links: OK
+  baseline_profiles: OK
+  local_X: OK
+  strings_ZZ: OK
+  connected_XX: OK
+  wilson_base: OK
+  flux_validation: OK
+  qpuobs_validation: OK
+  wilson_validation: OK
+
+Generated figure files:
+  01_delta_flux_controls.png
+  01_delta_flux_controls.pdf
+  02_control_differences.png
+  02_control_differences.pdf
+  03_spatial_heatmaps.png
+  03_spatial_heatmaps.pdf
+  04_radial_profiles.png
+  04_radial_profiles.pdf
+  05_localX_shells.png
+  05_localX_shells.pdf
+  06_strings_ZZ.png
+  06_strings_ZZ.pdf
+  07_connected_XX.png
+  07_connected_XX.pdf
+  08_wilson_loops.png
+  08_wilson_loops.pdf
+  09_wilson_control_deviation.png
+  09_wilson_control_deviation.pdf
+  10_validation_summary.png
+  10_validation_summary.pdf

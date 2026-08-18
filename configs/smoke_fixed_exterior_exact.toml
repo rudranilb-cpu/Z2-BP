@@ -1,0 +1,36 @@
+[simulation]
+nx = 3
+ny = 3
+K = 3.0
+Gamma = 1.0
+dt = 0.05
+steps = 4
+trotter = "strang"
+boundary = "fixed_exterior"
+backend = "exact"
+defect_x = 2
+defect_y = 2
+
+[peps]
+maxdim = 16
+cutoff = 1.0e-12
+normalize_tensors = true
+
+[bp]
+tolerance = 1.0e-10
+maxiter = 100
+fail_on_nonconvergence = true
+
+[observables]
+measure_every = 1
+radial_bin_width = 0.5
+angular_bins = 16
+front_quantile = 0.9
+correlation_max_distance = 2
+wilson_max_area = 4
+
+[output]
+root = "results"
+label = "smoke_fixed_exterior"
+run_id = ""
+overwrite = false

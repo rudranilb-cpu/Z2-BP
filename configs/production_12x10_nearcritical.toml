@@ -1,0 +1,36 @@
+[simulation]
+nx = 12
+ny = 10
+K = 3.04433
+Gamma = 1.0
+dt = 0.05
+steps = 20
+trotter = "lie_x_zz"
+boundary = "open_dual"
+backend = "bp"
+defect_x = 6
+defect_y = 5
+
+[peps]
+maxdim = 24
+cutoff = 1.0e-10
+normalize_tensors = true
+
+[bp]
+tolerance = 1.0e-8
+maxiter = 50
+fail_on_nonconvergence = true
+
+[observables]
+measure_every = 1
+radial_bin_width = 0.5
+angular_bins = 16
+front_quantile = 0.9
+correlation_max_distance = 4
+wilson_max_area = 4
+
+[output]
+root = "results"
+label = "production_12x10_nearcritical"
+run_id = ""
+overwrite = false
