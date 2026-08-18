@@ -1,0 +1,44 @@
+name: Import curated Z2 BP codebase
+
+on:
+  push:
+    branches:
+      - import-codebase
+    paths:
+      - .import/READY
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out import branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct curated archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .import/part-* > .import/payload.b64
+          base64 --decode .import/payload.b64 > .import/payload.tar.gz
+          echo "ae6f0e3b8ba575e6ff262aebed5134c58d7ab5206dd51eff2af7c14dd87c6b80  .import/payload.tar.gz" | sha256sum --check --strict
+          tar -xzf .import/payload.tar.gz
+
+      - name: Commit curated repository contents
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -r -- .import
+          git rm -- .github/workflows/import-codebase.yml
+          git add -- .gitignore README.md Project.toml Manifest.toml requirements-analysis.txt \
+            dual_gauge.jl Belief_Propagation_Dual_gauge.jl \
+            src bin configs scripts test validation analysis docs benchmarks benchmark_figures legacy
+          git status --short
+          git commit -m "Import validated Z2 BP benchmark codebase"
+          git push origin HEAD:import-codebase
